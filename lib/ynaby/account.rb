@@ -1,8 +1,6 @@
 module Ynaby
-  class Account
-    include Ynaby::ApiHelper
-
-    attr_reader :id, :name, :budget_id
+  class Account < Base
+    attr_reader :id, :name, :budget
 
     def initialize(id:,
                    name:,
@@ -13,7 +11,7 @@ module Ynaby
                    balance:,
                    cleared_balance:,
                    uncleared_balance:,
-                   budget_id:)
+                   budget:)
 
       @id = id
       @name = name
@@ -24,35 +22,67 @@ module Ynaby
       @balance = balance
       @cleared_balance = cleared_balance
       @uncleared_balance = uncleared_balance
-      @budget_id = budget_id
+      @budget = budget
     end
 
     def transactions(since: nil)
-      response = self.class.ynab_client
+      response = ynab_client
         .transactions
         .get_transactions_by_account(
-          @budget_id,
+          budget.id,
           @id,
           since_date: since&.to_date&.iso8601
         )
 
       response.data.transactions.map do |transaction|
-        Transaction.parse(object: transaction, budget_id: @budget_id)
+        Transaction.parse(object: transaction, account: self)
       end
-    end
-
-    def self.find(budget_id:, account_id:)
-      response = ynab_client.accounts.get_account_by_id(budget_id, account_id)
-      Account.parse(object: response.data.account, budget_id: budget_id)
     end
 
     def formatted_balance
       (@balance.to_i / 1000).to_s
     end
 
-    private
+    def bulk_upload_transactions(transactions)
+      if transactions.to_a.empty?
+        return {
+          new: 0,
+          updated: 0
+        }
+      end
 
-    def self.parse(object:, budget_id:)
+      body = {
+        transactions: transactions.map(&:upload_hash)
+      }
+
+
+      if multiple_budgets?(transactions)
+        raise "Can only upload transactions into one budget at a time"
+      end
+
+      response = ynab_client.transactions.bulk_create_transactions(budget.id, body)
+      duplicate_transactions = response.data.bulk.duplicate_import_ids
+
+      if duplicate_transactions.any?
+        update_duplicate_transactions(
+          new_transactions: transactions,
+          duplicate_transactions_ids: response.data.bulk.duplicate_import_ids
+        )
+      end
+
+      {
+        new: response.data.bulk.transaction_ids.count,
+        updated: duplicate_transactions.count
+      }
+    end
+
+    def transaction(transaction_id)
+      response = ynab_client.transactions.get_transactions_by_id(budget.id, transaction_id)
+
+      Transaction.parse(object: response.data.transaction, account: self)
+    end
+
+    def self.parse(object:, budget:)
       new(
         id: object.id,
         name: object.name,
@@ -63,8 +93,49 @@ module Ynaby
         balance: object.balance,
         cleared_balance: object.cleared_balance,
         uncleared_balance: object.uncleared_balance,
-        budget_id: budget_id
+        budget: budget
       )
+    end
+
+    def api_token
+      budget.api_token
+    end
+
+    private
+
+    def multiple_budgets?(transactions)
+      budget_id = transactions.budget_id
+      transactions.any? { |transaction| transaction.budget_id != budget_id }
+    end
+
+    def update_duplicate_transactions(new_transactions:, duplicate_transactions_ids:)
+      old_transactions = find_from_import_ids(duplicate_transactions_ids)
+
+      old_transactions.each do |old_transaction|
+        new_transaction = new_transactions.find do |transaction|
+          transaction.import_id == old_transaction.import_id
+        end
+
+        new_transaction.id = old_transaction.id
+        new_transaction.update
+      end
+    end
+
+    def find_from_import_ids(import_ids)
+      earliest_import_date = import_ids.sort.first.split(":")[1]
+
+      ynab_transactions = ynab_client.transactions.get_transactions(
+        budget.id,
+        since_date: earliest_import_date
+      ).data.transactions
+
+      parsed_transactions = ynab_transactions.map do |transaction_object|
+        Transaction.parse(object: transaction_object, account: self)
+      end
+
+      parsed_transactions.select do |transaction|
+        import_ids.include?(transaction.import_id)
+      end
     end
   end
 end
