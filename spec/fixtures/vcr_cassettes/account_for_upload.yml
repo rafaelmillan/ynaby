@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/accounts/eccab6f8-2d96-47b2-a19c-4c996a46ae65
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 16:08:44 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 1/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"f776d2b09a0ad3108ecceb8169b11596"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 317bbddc-5a5b-433b-8e40-ee1522682197
+      X-Runtime:
+      - '0.032465'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"account":{"id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","name":"Uploading
+        Account","type":"checking","on_budget":true,"closed":false,"note":null,"balance":0,"cleared_balance":0,"uncleared_balance":0,"transfer_payee_id":"83e8b470-8c4b-42b3-a2a6-134a42a6e71e","deleted":false}}}'
+    http_version:
+  recorded_at: Sun, 30 Sep 2018 16:08:45 GMT
+recorded_with: VCR 4.0.0

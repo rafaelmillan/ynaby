@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/transactions/bulk
+    body:
+      encoding: UTF-8
+      string: '{"transactions":[{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":-10000,"payee_name":"Jerry
+        Seinfeld","import_id":null,"payee_id":null,"memo":null},{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":50000,"payee_name":"George
+        Constanza","import_id":null,"payee_id":null,"memo":null}]}'
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 16:55:57 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 9/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"6fdbaaed6856f07d37cdaa5f0b9b7c65"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0412d624-032e-4d17-b5b0-699da79547a5
+      X-Runtime:
+      - '0.140362'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"bulk":{"transaction_ids":["b39cf268-17ab-4459-9a8f-88a21351b051","f87df539-63f0-41e8-b7e6-fbc64403f53d"],"duplicate_import_ids":[]}}}'
+    http_version: 
+  recorded_at: Sun, 30 Sep 2018 16:55:57 GMT
+recorded_with: VCR 4.0.0

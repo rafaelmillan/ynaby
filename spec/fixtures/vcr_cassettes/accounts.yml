@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 13:19:00 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 2/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"ee6eb1faf4a8ae0e1a4859cf96e1b8b6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - de5db686-7840-4d86-959c-2c1419dda574
+      X-Runtime:
+      - '0.030166'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"accounts":[{"id":"c791437c-6660-4e86-b41e-50e70e6ff34d","name":"My
+        Checking Account","type":"checking","on_budget":true,"closed":false,"note":null,"balance":400000,"cleared_balance":-600000,"uncleared_balance":1000000,"transfer_payee_id":"f808ff21-ebe2-42c6-ae8d-5375cf1f8c3f","deleted":false}]}}'
+    http_version:
+  recorded_at: Sun, 30 Sep 2018 13:19:00 GMT
+recorded_with: VCR 4.0.0

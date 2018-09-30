@@ -1,6 +1,9 @@
 module Ynaby
   class Transaction < Base
-    attr_reader :account, :date, :payee_name, :import_id
+    attr_reader :account, :date, :payee_name, :import_id, :cleared, :approved,
+                :flag_color, :payee_id, :category_id, :transfer_account_id,
+                :import_id, :account_name, :payee_name, :category_name, :account
+
     attr_accessor :id, :memo, :amount
 
     def initialize(id: nil,
@@ -10,7 +13,6 @@ module Ynaby
                    cleared: nil,
                    approved: nil,
                    flag_color: nil,
-                   account_id:,
                    payee_id: nil,
                    category_id: nil,
                    transfer_account_id: nil,
@@ -27,7 +29,6 @@ module Ynaby
       @cleared = cleared
       @approved = approved
       @flag_color = flag_color
-      @account_id = account_id
       @payee_id = payee_id
       @category_id = category_id
       @transfer_account_id = transfer_account_id
@@ -50,7 +51,7 @@ module Ynaby
 
     def upload_hash
       {
-        account_id: @account_id,
+        account_id: @account.id,
         date: @date.to_date.iso8601,
         amount: @amount,
         payee_name: @payee_name,
@@ -79,7 +80,6 @@ module Ynaby
         cleared: object.cleared,
         approved: object.approved,
         flag_color: object.flag_color,
-        account_id: object.account_id,
         payee_id: object.payee_id,
         category_id: object.category_id,
         transfer_account_id: object.transfer_account_id,
@@ -91,11 +91,11 @@ module Ynaby
       )
     end
 
+    private
+
     def budget_id
       account.budget.id
     end
-
-    private
 
     def api_token
       account.api_token

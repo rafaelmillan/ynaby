@@ -1,0 +1,238 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/transactions/bulk
+    body:
+      encoding: UTF-8
+      string: '{"transactions":[{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":-10000,"payee_name":"Jerry
+        Seinfeld","import_id":"ynaby:-10000:2018-09-15:1","payee_id":null,"memo":null},{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":50000,"payee_name":"George
+        Constanza","import_id":"ynaby:50000:2018-09-15:1","payee_id":null,"memo":null}]}'
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 17:24:47 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 23/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"ea4328e9db6a354ded54d4f0cc7dfdb9"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 917daead-e881-460c-bf3f-4b27989436b2
+      X-Runtime:
+      - '0.032404'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"bulk":{"transaction_ids":[],"duplicate_import_ids":["ynaby:-10000:2018-09-15:1","ynaby:50000:2018-09-15:1"]}}}'
+    http_version: 
+  recorded_at: Sun, 30 Sep 2018 17:24:48 GMT
+- request:
+    method: get
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/transactions?since_date=2018-09-15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 17:24:47 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 24/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"bb36c29f46a450448525e99b26e1188b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8d7cefd8-e2d5-4c79-bb07-419f8ef45eb1
+      X-Runtime:
+      - '0.056634'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"transactions":[{"id":"b39cf268-17ab-4459-9a8f-88a21351b051","date":"2018-09-15","amount":-10000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8d6a52c8-01de-4c76-9ce4-62caf2927b9a","payee_name":"Jerry
+        Seinfeld","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]},{"id":"909b87e4-d7b3-493f-b66a-26ed40c903cd","date":"2018-09-15","amount":-10000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8d6a52c8-01de-4c76-9ce4-62caf2927b9a","payee_name":"Jerry
+        Seinfeld","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":"ynaby:-10000:2018-09-15:1","deleted":false,"subtransactions":[]},{"id":"bd2d627e-1bae-4fd8-a544-318f9342f53d","date":"2018-09-15","amount":50000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8a636284-80d5-4265-8006-b3791f8237b4","payee_name":"George
+        Constanza","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":"ynaby:50000:2018-09-15:1","deleted":false,"subtransactions":[]},{"id":"f87df539-63f0-41e8-b7e6-fbc64403f53d","date":"2018-09-15","amount":50000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8a636284-80d5-4265-8006-b3791f8237b4","payee_name":"George
+        Constanza","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]},{"id":"64c0ef15-7a2f-460b-b8c3-c1fa68819cdc","date":"2018-09-20","amount":0,"memo":null,"cleared":"cleared","approved":true,"flag_color":null,"account_id":"c791437c-6660-4e86-b41e-50e70e6ff34d","account_name":"My
+        Checking Account","payee_id":"e0072c10-76ac-4c61-ac17-62f0e720b7a2","payee_name":"Starting
+        Balance","category_id":"cf5ce0cc-7a67-4af2-8819-d426ab0335dc","category_name":"Immediate
+        Income SubCategory","transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]},{"id":"b2f3805b-1756-4472-8dc0-5185822c0dae","date":"2018-09-27","amount":-500000,"memo":"","cleared":"cleared","approved":true,"flag_color":null,"account_id":"c791437c-6660-4e86-b41e-50e70e6ff34d","account_name":"My
+        Checking Account","payee_id":"e51988cf-8920-4e23-9ae9-19c25528eca8","payee_name":"Landlord","category_id":"1f13f4c9-c3fa-4d1c-8a65-43dfca05258c","category_name":"Rent/Mortgage","transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]},{"id":"1ca525cb-4462-4687-adab-37796f3fd629","date":"2018-09-28","amount":-100000,"memo":"Food","cleared":"cleared","approved":true,"flag_color":null,"account_id":"c791437c-6660-4e86-b41e-50e70e6ff34d","account_name":"My
+        Checking Account","payee_id":"dd836216-66a4-45e0-b63b-dc3df0baed86","payee_name":"Supermarket","category_id":"ee5a8690-45e6-49d3-af51-72ea104389e3","category_name":"Groceries","transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]},{"id":"e97cacbb-eb62-42dc-b0c6-5282613d96b0","date":"2018-09-30","amount":1000000,"memo":"","cleared":"uncleared","approved":true,"flag_color":null,"account_id":"c791437c-6660-4e86-b41e-50e70e6ff34d","account_name":"My
+        Checking Account","payee_id":"e770a56f-25b7-4f69-a7b5-a17933a457d4","payee_name":"Employer","category_id":"cf5ce0cc-7a67-4af2-8819-d426ab0335dc","category_name":"Immediate
+        Income SubCategory","transfer_account_id":null,"transfer_transaction_id":null,"import_id":null,"deleted":false,"subtransactions":[]}]}}'
+    http_version: 
+  recorded_at: Sun, 30 Sep 2018 17:24:48 GMT
+- request:
+    method: put
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/transactions/909b87e4-d7b3-493f-b66a-26ed40c903cd
+    body:
+      encoding: UTF-8
+      string: '{"transaction":{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":-10000,"payee_name":"Jerry
+        Seinfeld","import_id":"ynaby:-10000:2018-09-15:1","payee_id":null,"memo":null}}'
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 17:24:47 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 25/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"dadbd9d6e32cd90056ca2eb08e76e2c1"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 05ff30d2-5399-4bc8-b543-42554b19887d
+      X-Runtime:
+      - '0.050560'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"transaction_ids":["909b87e4-d7b3-493f-b66a-26ed40c903cd"],"transaction":{"id":"909b87e4-d7b3-493f-b66a-26ed40c903cd","date":"2018-09-15","amount":-10000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8d6a52c8-01de-4c76-9ce4-62caf2927b9a","payee_name":"Jerry
+        Seinfeld","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":"ynaby:-10000:2018-09-15:1","deleted":false,"subtransactions":[]}}}'
+    http_version: 
+  recorded_at: Sun, 30 Sep 2018 17:24:48 GMT
+- request:
+    method: put
+    uri: https://api.youneedabudget.com/v1/budgets/da64e638-63f0-41fc-97a2-cc7f38c8b034/transactions/bd2d627e-1bae-4fd8-a544-318f9342f53d
+    body:
+      encoding: UTF-8
+      string: '{"transaction":{"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","date":"2018-09-15","amount":50000,"payee_name":"George
+        Constanza","import_id":"ynaby:50000:2018-09-15:1","payee_id":null,"memo":null}}'
+    headers:
+      User-Agent:
+      - api_client/ruby/0.7.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<API_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 30 Sep 2018 17:24:47 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Rate-Limit:
+      - 26/200
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"137d0015836734f598326c4ff0aa5d51"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a589002d-fbb4-4610-ad06-aa6eb6ac4c65
+      X-Runtime:
+      - '0.046632'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"transaction_ids":["bd2d627e-1bae-4fd8-a544-318f9342f53d"],"transaction":{"id":"bd2d627e-1bae-4fd8-a544-318f9342f53d","date":"2018-09-15","amount":50000,"memo":null,"cleared":"uncleared","approved":false,"flag_color":null,"account_id":"eccab6f8-2d96-47b2-a19c-4c996a46ae65","account_name":"Uploading
+        Account","payee_id":"8a636284-80d5-4265-8006-b3791f8237b4","payee_name":"George
+        Constanza","category_id":null,"category_name":null,"transfer_account_id":null,"transfer_transaction_id":null,"import_id":"ynaby:50000:2018-09-15:1","deleted":false,"subtransactions":[]}}}'
+    http_version: 
+  recorded_at: Sun, 30 Sep 2018 17:24:48 GMT
+recorded_with: VCR 4.0.0

@@ -1,6 +1,6 @@
 module Ynaby
   class Budget < Base
-    attr_reader :id, :name, :currency_format, :user
+    attr_reader :id, :name, :last_modified_on, :date_format, :currency_format, :user
 
     def initialize(id:, name:, last_modified_on:, date_format:, currency_format:, user:)
       @id = id

@@ -1,6 +1,6 @@
 module Ynaby
   class Account < Base
-    attr_reader :id, :name, :budget
+    attr_reader :id, :name, :type, :on_budget, :closed, :note, :balance, :cleared_balance, :uncleared_balance, :budget
 
     def initialize(id:,
                    name:,
@@ -39,10 +39,6 @@ module Ynaby
       end
     end
 
-    def formatted_balance
-      (@balance.to_i / 1000).to_s
-    end
-
     def bulk_upload_transactions(transactions)
       if transactions.to_a.empty?
         return {
@@ -54,11 +50,6 @@ module Ynaby
       body = {
         transactions: transactions.map(&:upload_hash)
       }
-
-
-      if multiple_budgets?(transactions)
-        raise "Can only upload transactions into one budget at a time"
-      end
 
       response = ynab_client.transactions.bulk_create_transactions(budget.id, body)
       duplicate_transactions = response.data.bulk.duplicate_import_ids
@@ -103,11 +94,6 @@ module Ynaby
 
     private
 
-    def multiple_budgets?(transactions)
-      budget_id = transactions.budget_id
-      transactions.any? { |transaction| transaction.budget_id != budget_id }
-    end
-
     def update_duplicate_transactions(new_transactions:, duplicate_transactions_ids:)
       old_transactions = find_from_import_ids(duplicate_transactions_ids)
 
@@ -122,7 +108,7 @@ module Ynaby
     end
 
     def find_from_import_ids(import_ids)
-      earliest_import_date = import_ids.sort.first.split(":")[1]
+      earliest_import_date = import_ids.sort.first.split(":")[2]
 
       ynab_transactions = ynab_client.transactions.get_transactions(
         budget.id,
