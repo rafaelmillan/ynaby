@@ -1,8 +1,6 @@
 # Ynaby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ynaby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Unofficial wrapper gem of the [YNAB Ruby SDK](https://github.com/ynab/ynab-sdk-ruby) for modifying and creating transactions.
 
 ## Installation
 
@@ -22,7 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+user = Ynaby::User.new("my_api_token")
+
+user.budgets # All budgets
+budget = user.budget("budget_id") # Find budget
+
+budget.accounts # All accounts
+account = budget.account("account_id") # Find account
+
+account.transactions # All transactions
+account.transaction(since: Date.new(2018, 9, 28)) # Transactions since date
+transaction = account.transaction("transaction_id") # Find transaction
+
+transaction.memo = "New memo"
+transaction.update # Updates the transaction
+
+new_transaction = Ynaby::Transaction.new(
+  date: Date.new(2018, 9, 15),
+  amount: -10000,
+  payee_name: "Jerry Seinfeld",
+  account: account
+)
+new_transaction.upload # Creates a new transaction
+
+account.bulk_upload_transactions([new_transaction]) # Bulk upload
+```
 
 ## Development
 
@@ -32,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ynaby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rafaelmillan/ynaby.
 
 ## License
 
